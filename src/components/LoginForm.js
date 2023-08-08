@@ -17,9 +17,10 @@ const LoginForm =()=>{
 
     const onLogin = () => {
       Alert.alert("Credentials", `${userEmail} ${userPassword}`);
+      console.log(`Credentials ${userEmail} ${userPassword}`);
     };
 
-    console.log('focus=', focus);
+    
  return (
 
 
@@ -31,9 +32,8 @@ const LoginForm =()=>{
         style={[styles.formInput, focus==="email" && styles.activeFormInput] }
         placeholder="Адреса електронної пошти"
         placeholderTextColor='#BDBDBD'
-        onFocus={() => {setFocus("email");
-        console.log('focus=', focus)}}
-        onBlur={()=>{setFocus(null);console.log('focus=', focus)}}
+        onFocus={() => setFocus("email")}
+        onBlur={()=>setFocus(null)}
         
       />
       </KeyboardAvoidingView>
@@ -46,10 +46,8 @@ const LoginForm =()=>{
         placeholder="Пароль"
         placeholderTextColor='#BDBDBD'
         secureTextEntry
-        onFocus={() => {
-          setFocus('password');
-        console.log('focus=', focus)}}
-        onBlur={()=>{setFocus(null);console.log('focus=', focus)}}
+        onFocus={() => setFocus('password')}
+        onBlur={()=>setFocus(null)}
         />
       </KeyboardAvoidingView>
       <TouchableOpacity style={styles.showPasswordButton} onPress={() => Alert.alert('Toggle Password')}>
@@ -61,7 +59,7 @@ const LoginForm =()=>{
         <Text style={styles.formButtonText}>Увійти</Text>
       </TouchableOpacity>
 
-      <Text style={styles.loginLinkText}>Немає акаунту?   
+      <Text style={styles.loginLinkText}>Немає акаунту?&nbsp;  
         <Text style={[styles.loginLinkText, styles.loginLink]}>Зареєструватися</Text>
       </Text>
     

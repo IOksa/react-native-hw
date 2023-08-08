@@ -17,9 +17,10 @@ const RegistrationForm =()=>{
 
     const onLogin = () => {
       Alert.alert("Credentials", `${userLogin} ${userEmail} ${userPassword}`);
+      console.log(`Credentials ${userLogin} ${userEmail} ${userPassword}`);
     };
 
-    console.log('focus=', focus);
+    
  return (
 
 
@@ -31,9 +32,8 @@ const RegistrationForm =()=>{
         style={[styles.formInput, focus==="login" && styles.activeFormInput]}
         placeholder="Логін"
         placeholderTextColor='#BDBDBD'
-        onFocus={() => {setFocus("login");
-        console.log('focus=', focus)}}
-        onBlur={()=>{setFocus(null);console.log('focus=', focus)}}
+        onFocus={() => setFocus("login")}
+        onBlur={()=>setFocus(null)}
         
       />
       </KeyboardAvoidingView>
@@ -44,9 +44,8 @@ const RegistrationForm =()=>{
         style={[styles.formInput, focus==="email" && styles.activeFormInput] }
         placeholder="Адреса електронної пошти"
         placeholderTextColor='#BDBDBD'
-        onFocus={() => {setFocus("email");
-        console.log('focus=', focus)}}
-        onBlur={()=>{setFocus(null);console.log('focus=', focus)}}
+        onFocus={() => setFocus("email")}
+        onBlur={()=>setFocus(null)}
         
       />
       </KeyboardAvoidingView>
@@ -59,10 +58,8 @@ const RegistrationForm =()=>{
         placeholder="Пароль"
         placeholderTextColor='#BDBDBD'
         secureTextEntry
-        onFocus={() => {
-          setFocus('password');
-        console.log('focus=', focus)}}
-        onBlur={()=>{setFocus(null);console.log('focus=', focus)}}
+        onFocus={() => setFocus('password')}       
+        onBlur={()=>setFocus(null)}
         />
       </KeyboardAvoidingView>
       <TouchableOpacity style={styles.showPasswordButton} onPress={() => Alert.alert('Toggle Password')}>
@@ -74,7 +71,7 @@ const RegistrationForm =()=>{
         <Text style={styles.formButtonText}>Зареєструватися</Text>
       </TouchableOpacity>
 
-      <Text style={styles.loginLinkText}>Вже є акаунт?
+      <Text style={styles.loginLinkText}>Вже є акаунт?&nbsp;
         <Text style={[styles.loginLinkText, styles.loginLink]}>Увійти</Text>
       </Text>
           

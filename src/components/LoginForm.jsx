@@ -15,21 +15,26 @@ const LoginForm =()=>{
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [focus, setFocus] = useState(null);
-
+    const [isShowPassword, setIsShowPassword]=useState(true);
+    
     const navigation = useNavigation();
 
     const onLogin = () => {
       if(userEmail && userPassword){
-        Alert.alert("Credentials", `${userEmail} ${userPassword}`);
-        console.log(`Credentials - email: ${userEmail}, password: ${userPassword}`);
+        // Alert.alert("Credentials", `${userEmail} ${userPassword}`);
+        // console.log(`Credentials - email: ${userEmail}, password: ${userPassword}`);
         setUserEmail('');
         setUserPassword('');
+        navigation.navigate("Home",{screen: 'PostsScreen'});
       }
       else{
         Alert.alert("Credentials", `Заповніть всі поля для входу`);
       }
     };
 
+    const ToggleShowPassword = ()=>{
+      setIsShowPassword(!isShowPassword);
+    }
     
  return (
 
@@ -60,7 +65,7 @@ const LoginForm =()=>{
         onBlur={()=>setFocus(null)}
         />
       </KeyboardAvoidingView>
-      <TouchableOpacity style={styles.showPasswordButton} onPress={() => Alert.alert('Toggle Password')}>
+      <TouchableOpacity style={styles.showPasswordButton} onPress={ToggleShowPassword}>
         <Text style={styles.showPasswordText}>Показати</Text>
       </TouchableOpacity>
       </View>

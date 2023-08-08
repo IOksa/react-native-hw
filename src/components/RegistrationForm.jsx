@@ -22,11 +22,12 @@ const RegistrationForm =()=>{
 
     const onLogin = () => {
       if (userLogin && userEmail && userPassword){
-        Alert.alert("Credentials", `${userLogin} ${userEmail} ${userPassword}. Реєстрація пройшла успішно`);
-        console.log(`Credentials - login: ${userLogin}, email: ${userEmail}, password: ${userPassword}`);
+        // Alert.alert("Credentials", `${userLogin} ${userEmail} ${userPassword}. Реєстрація пройшла успішно`);
+        // console.log(`Credentials - login: ${userLogin}, email: ${userEmail}, password: ${userPassword}`);
         setUserLogin('');
         setUserEmail('');
         setUserPassword('');
+        navigation.navigate("Home",{screen: 'PostsScreen'});
       }
       else {
         Alert.alert("Credentials", `Заповніть всі поля для реєстрації`);

@@ -14,7 +14,7 @@ const RegistrationScreen = ({ navigation })=>{
                     <View style={styles.formWrap}>
                         <UserAvatar/>
                         <CommonTitle text='Реєстрація'/>
-                        <RegistrationForm navigation={navigation}/>
+                        <RegistrationForm/>
 
                     </View>
                 

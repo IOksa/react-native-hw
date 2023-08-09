@@ -60,7 +60,7 @@ const LoginForm =()=>{
         style={[styles.formInput, styles.formInputLastChild, focus==='password' && styles.activeFormInput]}
         placeholder="Пароль"
         placeholderTextColor='#BDBDBD'
-        secureTextEntry
+        secureTextEntry={isShowPassword}
         onFocus={() => setFocus('password')}
         onBlur={()=>setFocus(null)}
         />

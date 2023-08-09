@@ -27,7 +27,8 @@ const RegistrationForm =()=>{
         setUserLogin('');
         setUserEmail('');
         setUserPassword('');
-        navigation.navigate("Home",{screen: 'PostsScreen'});
+        // navigation.navigate("Home",{screen: 'PostsScreen'});
+        navigation.navigate('PostsScreen');
       }
       else {
         Alert.alert("Credentials", `Заповніть всі поля для реєстрації`);

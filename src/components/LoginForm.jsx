@@ -5,8 +5,6 @@ import {
   Text,
   View,
   Alert,
-  KeyboardAvoidingView,
-  Platform,
   StyleSheet} from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
@@ -22,7 +20,7 @@ const LoginForm =()=>{
     const onLogin = () => {
       if(userEmail && userPassword){
         // Alert.alert("Credentials", `${userEmail} ${userPassword}`);
-        // console.log(`Credentials - email: ${userEmail}, password: ${userPassword}`);
+        console.log(`Credentials - email: ${userEmail}, password: ${userPassword}`);
         setUserEmail('');
         setUserPassword('');
         navigation.navigate("Home",{screen: 'PostsScreen'});
@@ -40,7 +38,7 @@ const LoginForm =()=>{
 
 
     <>
-      <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
+
       <TextInput
         value={userEmail}
         onChangeText={setUserEmail}
@@ -51,9 +49,9 @@ const LoginForm =()=>{
         onBlur={()=>setFocus(null)}
         
       />
-      </KeyboardAvoidingView>
+
       <View style={styles.inputPasswordWrap}>
-      <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}> 
+      
       <TextInput
         value={userPassword}
         onChangeText={setUserPassword}
@@ -64,7 +62,7 @@ const LoginForm =()=>{
         onFocus={() => setFocus('password')}
         onBlur={()=>setFocus(null)}
         />
-      </KeyboardAvoidingView>
+
       <TouchableOpacity style={styles.showPasswordButton} onPress={ToggleShowPassword}>
         <Text style={styles.showPasswordText}>Показати</Text>
       </TouchableOpacity>

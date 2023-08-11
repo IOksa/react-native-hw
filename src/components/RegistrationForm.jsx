@@ -6,8 +6,6 @@ import {
   Text,
   View,
   Alert,
-  KeyboardAvoidingView,
-  Platform,
   StyleSheet} from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
@@ -22,13 +20,12 @@ const RegistrationForm =()=>{
 
     const onLogin = () => {
       if (userLogin && userEmail && userPassword){
-        // Alert.alert("Credentials", `${userLogin} ${userEmail} ${userPassword}. Реєстрація пройшла успішно`);
-        // console.log(`Credentials - login: ${userLogin}, email: ${userEmail}, password: ${userPassword}`);
+        console.log(`Credentials - login: ${userLogin}, email: ${userEmail}, password: ${userPassword}`);
         setUserLogin('');
         setUserEmail('');
         setUserPassword('');
-        // navigation.navigate("Home",{screen: 'PostsScreen'});
-        navigation.navigate('PostsScreen');
+        navigation.navigate("Home",{screen: 'PostsScreen'});
+        // navigation.navigate('PostsScreen');
       }
       else {
         Alert.alert("Credentials", `Заповніть всі поля для реєстрації`);
@@ -43,7 +40,7 @@ const ToggleShowPassword = ()=>{
 
 
     <>
-    <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
+  
      <TextInput
         value={userLogin}
         onChangeText={setUserLogin}
@@ -55,8 +52,8 @@ const ToggleShowPassword = ()=>{
    
         
       />
-      </KeyboardAvoidingView>
-      <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
+    
+     
       <TextInput
         value={userEmail}
         onChangeText={setUserEmail}
@@ -67,9 +64,9 @@ const ToggleShowPassword = ()=>{
         onBlur={()=>setFocus(null)}
         
       />
-      </KeyboardAvoidingView>
+     
       <View style={styles.inputPasswordWrap}>
-      <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}> 
+     
       <TextInput
         value={userPassword}
         onChangeText={setUserPassword}
@@ -80,7 +77,7 @@ const ToggleShowPassword = ()=>{
         onFocus={() => setFocus('password')}       
         onBlur={()=>setFocus(null)}
         />
-      </KeyboardAvoidingView>
+      
       <TouchableOpacity style={styles.showPasswordButton} onPress={ToggleShowPassword}>
         <Text style={styles.showPasswordText}>Показати</Text>
       </TouchableOpacity>

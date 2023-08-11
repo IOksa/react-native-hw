@@ -1,5 +1,6 @@
 import React from "react";
-import { ImageBackground, View, TouchableWithoutFeedback, Keyboard, StyleSheet} from "react-native";
+import { ImageBackground, View, TouchableWithoutFeedback, Keyboard,  KeyboardAvoidingView,
+Platform, StyleSheet} from "react-native";
 import BgImage from '../assets/images/PhotoBG.jpg';
 import CommonTitle from '../components/CommonTitle';
 import RegistrationForm  from "../components/RegistrationForm";
@@ -8,7 +9,12 @@ import UserAvatar from "../components/UserAvatar";
 const RegistrationScreen = ({ navigation })=>{
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.container}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS == "ios" ? "padding" : "height"}
+                style={styles.container}
+                keyboardVerticalOffset={-70}>
+
+               <View style={styles.container}>
                 <ImageBackground source={BgImage} resizeMethod='resize' resizeMode='cover' style={styles.image} >
                 
                     <View style={styles.formWrap}>
@@ -20,6 +26,7 @@ const RegistrationScreen = ({ navigation })=>{
                 
                 </ImageBackground>
             </View>
+            </KeyboardAvoidingView>
         </TouchableWithoutFeedback>
         );
 
@@ -28,7 +35,7 @@ const RegistrationScreen = ({ navigation })=>{
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#fff',
+       
     },
 
     image: {

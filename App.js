@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import { NavigationContainer } from "@react-navigation/native";
+import {View, StyleSheet} from "react-native";
 import 'react-native-gesture-handler';
 
 import MainNavigator from './src/routes/MainNavigator';
-import BottomNavigator from './src/routes/BottomNavіgator';
+
 
 
 export default function App() {
@@ -19,16 +20,24 @@ export default function App() {
   return (
     
     <>
-    <NavigationContainer>
-      <MainNavigator/> 
-      {/* <BottomNavigator/> */}
-    </NavigationContainer>
-    
-    <StatusBar style="auto" />
+    <View style={styles.container}>
+      <NavigationContainer>
+        <MainNavigator/> 
+
+      </NavigationContainer>
+      
+      <StatusBar style="auto" />
+    </View>
     </>
     
   
   );
 }
 
+const styles = StyleSheet.create({
+  container:{
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+})
 

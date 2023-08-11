@@ -14,18 +14,18 @@ const RegistrationScreen = ({ navigation })=>{
                 style={styles.container}
                 keyboardVerticalOffset={-70}>
 
-               <View style={styles.container}>
-                <ImageBackground source={BgImage} resizeMethod='resize' resizeMode='cover' style={styles.image} >
-                
-                    <View style={styles.formWrap}>
-                        <UserAvatar/>
-                        <CommonTitle text='Реєстрація'/>
-                        <RegistrationForm/>
+                <View style={styles.container}>
+                    <ImageBackground source={BgImage} resizeMethod='resize' resizeMode='cover' style={styles.image} >
+                    
+                        <View style={styles.formWrap}>
+                            <UserAvatar/>
+                            <CommonTitle text='Реєстрація'/>
+                            <RegistrationForm/>
 
-                    </View>
-                
-                </ImageBackground>
-            </View>
+                        </View>
+                    
+                    </ImageBackground>
+                </View>
             </KeyboardAvoidingView>
         </TouchableWithoutFeedback>
         );

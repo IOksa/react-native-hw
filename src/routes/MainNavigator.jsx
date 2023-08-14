@@ -4,6 +4,7 @@ import LoginScreen from '../screens/LoginScreen';
 import PostsScreen from '../screens/PostsScreen';
 import Home from '../screens/Home';
 import BottomNavigator from './BottomNavіgator';
+import {Button} from "react-native";
 
 const MainStack = createStackNavigator();
 
@@ -27,7 +28,7 @@ const MainNavigator =()=>(
               <Button
                 onPress={() => alert("This is a button!")}
                 title="Press me"
-                color="#fff"
+                color="red"
               />
             ),
           }} /> 

@@ -4,7 +4,8 @@ import LoginScreen from '../screens/LoginScreen';
 import PostsScreen from '../screens/PostsScreen';
 import Home from '../screens/Home';
 import BottomNavigator from './BottomNavіgator';
-import {Button} from "react-native";
+import {TouchableOpacity, Text} from "react-native";
+import ButtonLogout from '../components/ButtonLogout';
 
 const MainStack = createStackNavigator();
 
@@ -25,11 +26,7 @@ const MainNavigator =()=>(
               fontSize: 20,
             },
             headerRight: () => (
-              <Button
-                onPress={() => alert("This is a button!")}
-                title="Press me"
-                color="red"
-              />
+              <ButtonLogout/>
             ),
           }} /> 
         <MainStack.Screen

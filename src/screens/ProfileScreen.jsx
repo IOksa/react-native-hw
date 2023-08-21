@@ -1,13 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import ButtonLogout from '../components/ButtonLogout';
+
 
 
 const ProfileScreen = () => {
   return (
     <View style={styles.container}>
       <Text>ProfileScreen</Text>
-      <ButtonLogout/>
+      
     </View>
   );
 };

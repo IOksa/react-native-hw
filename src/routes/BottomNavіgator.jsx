@@ -18,6 +18,12 @@ const BottomNavigator = () => {
       tabBarStyle: {
          height: 83,
       },
+      headerStyle: {
+        backgroundColor: '#FFFFFF',
+        borderBottomColor: '#e8e8e8',
+        borderBottomWidth: 1,
+        height: 88,
+      },
    
 
     }}>
@@ -26,6 +32,15 @@ const BottomNavigator = () => {
        name="PostsScreen"
        component={PostsScreen}
        options={ {
+        headerRight: () => <Feather name="log-out" size={24} color="#BDBDBD" style={styles.butLogout}/>,
+        headerTitleAlign: 'center',
+        title: 'Публікації',
+        headerTitleStyle: {
+            fontFamily: 'RobotoMedium',
+            fontSize: 17,
+            color: '#212121',
+             
+            },
         tabBarLabel: '',
         tabBarIcon: ({focused, color}) => (
           <View style={[styles.activeBackgroundTab, focused===false && styles.nonactiveBackgroundTab]}>
@@ -81,6 +96,10 @@ const styles = StyleSheet.create({
   nonactiveBackgroundTab:{
     backgroundColor: 'white',
   },
+
+  butLogout:{
+    right: 10,
+  }
 });
 
 export default BottomNavigator;

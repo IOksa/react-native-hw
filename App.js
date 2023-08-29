@@ -10,6 +10,7 @@ import MainNavigator from './src/routes/MainNavigator';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
+    'RobotoBold': require('./src/assets/fonts/roboto-v30-cyrillic_latin-700.ttf'),
     'RobotoMedium': require('./src/assets/fonts/roboto-v30-cyrillic_latin-500.ttf'),
     'RobotoRegular': require('./src/assets/fonts/roboto-v30-cyrillic_latin-regular.ttf'),
   });

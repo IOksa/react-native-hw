@@ -15,18 +15,7 @@ const MainNavigator =()=>(
         <MainStack.Screen 
           name="PostsScreen" 
           component={PostsScreen} 
-          options={{
-            headerTitleAlign: 'center',
-            title: 'Публікації',
-            headerTitleStyle: {
-              fontFamily: 'RobotoMedium',
-              fontSize: 17,
-              lineHeight: 1.2941,
-              color: '#212121',
-             
-            },
-            headerRight: () => (<ButtonLogout/>),
-          }} /> 
+          /> 
         <MainStack.Screen
           name="Home"
           component={BottomNavigator}

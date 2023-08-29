@@ -1,14 +1,40 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import ButtonLogout from '../components/ButtonLogout';
+import React , { useState } from "react";
+import { View, Image, Text, SafeAreaView, FlatList, StyleSheet } from "react-native";
+import AvatarImage from '../assets/images/User.png';
+import {postQuantity} from '../data/constants';
+import {POSTS} from '../data/posts';
+import Post from '../components/Post';
 
 
 const PostsScreen = () => {
+  const [posts, setPosts] = useState(POSTS);
+  const isPost=postQuantity;
+  
   return (
     <View style={styles.container}>
-      <Text>PostsScreen</Text>
+      <View style={styles.avatarWrap}>
+        <Image source={AvatarImage} style={styles.avatarImage} />
+        <View style={styles.avatarTextWrap}>
+          <Text style={styles.avatarName}>Natali Romanova</Text>
+          <Text style={styles.avatarEmail}>email@example.com</Text>
+        </View>
+      </View>
+      {/* {isPost && 
+    */}
+        <SafeAreaView >
+         
+          <FlatList
+            data={posts}
+            renderItem={({item}) => <Post item={item}/>}
+            keyExtractor={(item) => item.id}
 
-      <ButtonLogout/>
+          />
+         
+        </SafeAreaView>
+    {/* } */}
+      
+     
+     
 
 
     </View>
@@ -18,9 +44,37 @@ const PostsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 16,
+    paddingVertical: 32,
+    
+  },
+  avatarWrap:{
+    marginBottom: 32,
+    marginLeft: 16,
+    flexDirection: 'row',
+  },
+  avatarImage:{
+    width: 60,
+    height: 60,
+
+  },
+  avatarTextWrap: {
+    marginLeft: 8,
     justifyContent: "center",
   },
+  avatarName:{
+    color: '#212121',
+    fontFamily: 'RobotoBold',
+    fontSize: 13,
+
+  },
+  avatarEmail:{
+    color: 'rgba(33, 33, 33, 0.80)',
+    fontFamily: 'RobotoRegular',
+    fontSize: 11,
+    
+  }
 });
 
 export default PostsScreen;

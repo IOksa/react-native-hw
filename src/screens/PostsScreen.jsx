@@ -9,9 +9,9 @@ import Post from '../components/Post';
 const PostsScreen = () => {
   const [posts, setPosts] = useState(POSTS);
   const isPost=postQuantity;
-  
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.avatarWrap}>
         <Image source={AvatarImage} style={styles.avatarImage} />
         <View style={styles.avatarTextWrap}>
@@ -19,25 +19,21 @@ const PostsScreen = () => {
           <Text style={styles.avatarEmail}>email@example.com</Text>
         </View>
       </View>
-      {/* {isPost && 
-    */}
-        <SafeAreaView >
-         
+      {/* {isPost &&           */}
           <FlatList
             data={posts}
             renderItem={({item}) => <Post item={item}/>}
             keyExtractor={(item) => item.id}
-
+            showsVerticalScrollIndicator={false}
           />
-         
-        </SafeAreaView>
-    {/* } */}
-      
+      {/* } */}
+    </SafeAreaView>
+
      
      
 
 
-    </View>
+
   );
 };
 

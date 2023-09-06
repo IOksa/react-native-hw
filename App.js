@@ -24,7 +24,6 @@ export default function App() {
     <View style={styles.container}>
       <NavigationContainer>
         <MainNavigator/> 
-
       </NavigationContainer>
       
       <StatusBar style="auto" />

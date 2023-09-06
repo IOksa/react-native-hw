@@ -32,7 +32,7 @@ const BottomNavigator = () => {
        name="PostsScreen"
        component={PostsScreen}
        options={ {
-        headerRight: () => <Feather name="log-out" size={24} color="#BDBDBD" style={styles.butLogout}/>,
+        headerRight: () => <Feather name="log-out" size={24} color="#BDBDBD" style={styles.iconLogout}/>,
         headerTitleAlign: 'center',
         title: 'Публікації',
         headerTitleStyle: {
@@ -53,6 +53,18 @@ const BottomNavigator = () => {
        name="CreatePostsScreen"
        component={CreatePostsScreen}
        options={{
+        headerLeft: () => <Feather name="arrow-left" size={24} color="#21212180" style={styles.iconBack}/>,
+  
+        headerTitleAlign: 'center',
+        title: 'Створити публікацію',
+        headerTitleStyle: {
+            fontFamily: 'RobotoMedium',
+            fontSize: 17,
+            color: '#212121',
+            letterSpacing: -0.408
+
+            },
+
         tabBarLabel: '',
         tabBarIcon: ({focused, color})=>(
           <View style={[styles.activeBackgroundTab, focused===false && styles.nonactiveBackgroundTab]}>
@@ -81,6 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+
   },
 
   activeBackgroundTab:{
@@ -97,8 +110,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 
-  butLogout:{
+  iconLogout:{
     right: 10,
+  },
+
+  iconBack:{
+    left: 10,
+  
   }
 });
 

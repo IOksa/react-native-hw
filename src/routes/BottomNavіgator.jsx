@@ -1,6 +1,7 @@
 import React from "react";
 import { View,StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import PostsScreen from '../screens/PostsScreen';
@@ -10,6 +11,8 @@ import ProfileScreen from '../screens/ProfileScreen';
 const Tabs = createBottomTabNavigator();
 
 const BottomNavigator = () => {
+  const navigation = useNavigation();
+
   return (
     <Tabs.Navigator screenOptions={{
       "tabBarActiveTintColor": "white",
@@ -32,7 +35,7 @@ const BottomNavigator = () => {
        name="PostsScreen"
        component={PostsScreen}
        options={ {
-        headerRight: () => <Feather name="log-out" size={24} color="#BDBDBD" style={styles.iconLogout}/>,
+        headerRight: () => <Feather name="log-out" size={24} color="#BDBDBD" style={styles.iconLogout} onPress={() => navigation.navigate("LoginScreen")}/>,
         headerTitleAlign: 'center',
         title: 'Публікації',
         headerTitleStyle: {
@@ -53,7 +56,9 @@ const BottomNavigator = () => {
        name="CreatePostsScreen"
        component={CreatePostsScreen}
        options={{
-        headerLeft: () => <Feather name="arrow-left" size={24} color="#21212180" style={styles.iconBack}/>,
+        headerLeft: () => <Feather name="arrow-left" size={24} color="#21212180" style={styles.iconBack} onPress={() => {
+          navigation.navigate("PostsScreen");
+        }}/>,
   
         headerTitleAlign: 'center',
         title: 'Створити публікацію',
@@ -64,7 +69,9 @@ const BottomNavigator = () => {
             letterSpacing: -0.408
 
             },
-
+        tabBarStyle: {
+          display: 'none',
+        },
         tabBarLabel: '',
         tabBarIcon: ({focused, color})=>(
           <View style={[styles.activeBackgroundTab, focused===false && styles.nonactiveBackgroundTab]}>
@@ -77,6 +84,7 @@ const BottomNavigator = () => {
        name="ProfileScreen"
        component={ProfileScreen}
        options={{
+        headerShown: false,
         tabBarLabel: '',
         tabBarIcon: ({focused, color}) => (
           <View style={[styles.activeBackgroundTab, focused===false && styles.nonactiveBackgroundTab]}>

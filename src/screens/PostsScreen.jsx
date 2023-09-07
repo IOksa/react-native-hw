@@ -8,7 +8,7 @@ import Post from '../components/Post';
 
 const PostsScreen = () => {
   const [posts, setPosts] = useState(POSTS);
-  const isPost=postQuantity;
+  const isPost=10;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -19,14 +19,14 @@ const PostsScreen = () => {
           <Text style={styles.avatarEmail}>email@example.com</Text>
         </View>
       </View>
-      {/* {isPost &&           */}
+      {isPost>0 &&           
           <FlatList
             data={posts}
-            renderItem={({item}) => <Post item={item}/>}
+            renderItem={({item}) => <Post item={item} likes="false" fullLocation="true"/>}
             keyExtractor={(item) => item.id}
             showsVerticalScrollIndicator={false}
           />
-      {/* } */}
+      }
     </SafeAreaView>
 
      

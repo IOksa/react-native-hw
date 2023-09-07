@@ -1,20 +1,32 @@
 import { View, Image, Text, StyleSheet } from "react-native";
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-const Post = ({item}) =>{
+const Post = ({item, likes, fullLocation}) =>{
+    const navigation = useNavigation();
     return (
     
     <View>
         <Image source={item.path} style={styles.image}/>
         <Text style={styles.postTitle}>{item.title}</Text>
         <View style={styles.infoWrap}>
+            <View style={styles.wrapper}>
             <View style={styles.commentsWrap}>
-                <Feather name="message-circle" size={24} color="#BDBDBD" />
-                <Text style={styles.commentsText}>{item.comments}</Text>
+                <Feather name="message-circle" size={24} style={[styles.icon, likes==='true' && styles.iconProfile]} onPress={() => {
+          navigation.navigate("CommentsScreen");
+        }}/>
+                <Text style={[styles.commentsText, likes==='true' && styles.textProfile]}>{item.comments}</Text>
+            </View>
+            {likes==='true' &&
+            <View style={styles.likesWrap}>
+                <Feather name="thumbs-up" size={24} color="#FF6C00" />
+                <Text style={styles.textProfile}>{item.likes}</Text>
+            </View>
+            }
             </View>
             <View style={styles.locationWrap}>
                 <Feather name="map-pin" size={24} color="#BDBDBD" />
-                <Text style={styles.postLocation}>{`${item.region}, ${item.country}`}</Text>
+                <Text style={styles.postLocation}>{fullLocation==="true" ? `${item.region}, ${item.country}`: `${item.country}`}</Text>
             </View> 
         </View>
     </View>
@@ -34,10 +46,14 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         
     },
+
     infoWrap:{
         flexDirection: 'row',
         marginBottom: 32,
         justifyContent: 'space-between',
+    },
+    wrapper:{
+        flexDirection: 'row',
     },
     commentsWrap:{
         flexDirection: 'row',
@@ -64,7 +80,27 @@ const styles = StyleSheet.create({
         marginLeft: 3,
        
 
-    }
+    },
+
+    textProfile:{
+        color: '#212121',
+        fontFamily: 'RobotoRegular',
+        fontSize: 16,
+        marginLeft: 6,
+    },
+
+    icon:{
+        color: '#BDBDBD',
+    },
+
+    iconProfile:{
+        color: '#FF6C00',
+    },
+
+    likesWrap:{
+        flexDirection: 'row',
+        marginLeft: 24,
+    },
 });
 
 export default Post;

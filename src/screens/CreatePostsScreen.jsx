@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard,  KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
+
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 
@@ -8,7 +9,8 @@ const CreatePostsScreen = () => {
   const [photo, setPhoto] = useState('');
   const [title, setTitle] = useState('');
   const [location, setLocation] = useState('');
-  const disabled = !(title && locate);
+  const disabled = !(photo && title && location);
+ 
 
   const onPost = ()=>{
   
@@ -20,7 +22,7 @@ const CreatePostsScreen = () => {
           behavior={Platform.OS == "ios" ? "padding" : "height"}
           style={styles.container}>
 
-        <View style={styles.wrapper}>
+        <View>
           <View style={styles.photoWrap}>
             <View style={styles.circle}>
               <FontAwesome name="camera" size={24} color="#BDBDBD" />
@@ -54,14 +56,15 @@ const CreatePostsScreen = () => {
           <TouchableOpacity style={[styles.butPost, disabled===true && styles.butPostDisabled]} onPress={onPost}>
             <Text style={[styles.butPostText, disabled===true && styles.butPostDisabled]}>Опублікувати</Text>
           </TouchableOpacity>
-
-          <View style={styles.trashWrap}>
-            <View style={styles.backgroundTrash}>
-              <Feather name="trash-2" size={24} color="#BDBDBD" />
-            </View>
-          </View>
-
         </View>
+
+        <View style={styles.trashWrap}>
+          <View style={styles.backgroundTrash}>
+            <Feather name="trash-2" size={24} color="#BDBDBD" />
+          </View>
+        </View>
+
+
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
   );
@@ -73,13 +76,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     paddingHorizontal: 16,
     paddingVertical: 32,
-  },
-  wrapper:{
-    flex: 1,
     justifyContent: "space-between",
-    
   },
-
+  
   photoWrap:{
     width: '100%',
     height: 240,

@@ -3,6 +3,7 @@ import RegistrationScreen from '../screens/RegistrationScreen';
 import LoginScreen from '../screens/LoginScreen';
 import PostsScreen from '../screens/PostsScreen';
 import BottomNavigator from './BottomNavіgator';
+import CommentsScreen from '../screens/CommentsScreen';
 
 
 const MainStack = createStackNavigator();
@@ -16,6 +17,7 @@ const MainNavigator =()=>(
           component={BottomNavigator}
           options={{ headerShown: false }}
         />
+         <MainStack.Screen name="CommentsScreen" component={CommentsScreen} /> 
     </MainStack.Navigator>
 
 )

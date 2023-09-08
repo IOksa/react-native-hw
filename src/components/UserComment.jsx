@@ -2,33 +2,18 @@ import { View, Image, Text, StyleSheet } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-const Post = ({item, likes, fullLocation}) =>{
+const UserComment = ({item}) =>{
     const navigation = useNavigation();
     return (
     
     <View>
-        <Image source={item.path} style={styles.image}/>
-        <Text style={styles.postTitle}>{item.title}</Text>
+        <Image source={item.photoUser} style={styles.image}/>
+        
         <View style={styles.infoWrap}>
-            <View style={styles.wrapper}>
-            <View style={styles.commentsWrap}>
-                <Feather name="message-circle" size={24} style={[styles.icon, likes==='true' && styles.iconProfile]} onPress={() => {
-          navigation.navigate("CommentsScreen", {item});
-        }}/>
-                <Text style={[styles.commentsText, likes==='true' && styles.textProfile]}>{item.comments}</Text>
-            </View>
-            {likes==='true' &&
-            <View style={styles.likesWrap}>
-                <Feather name="thumbs-up" size={24} color="#FF6C00" />
-                <Text style={styles.textProfile}>{item.likes}</Text>
-            </View>
-            }
-            </View>
-            <View style={styles.locationWrap}>
-                <Feather name="map-pin" size={24} color="#BDBDBD" />
-                <Text style={styles.postLocation}>{fullLocation==="true" ? `${item.region}, ${item.country}`: `${item.country}`}</Text>
-            </View> 
+            <Text style={styles.commentsText}>{item.commentText}</Text>
+            <Text style={styles.commentsDate}>{item.date}</Text>
         </View>
+  
     </View>
    
     )
@@ -103,4 +88,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Post;
+export default UserComment;

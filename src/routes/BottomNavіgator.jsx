@@ -92,6 +92,8 @@ const BottomNavigator = () => {
           </View>)
         }}
         />
+        
+      
     </Tabs.Navigator>
   );
 };

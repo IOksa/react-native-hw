@@ -1,19 +1,19 @@
 import { View, Image, Text, StyleSheet } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import {userLogin} from '../data/constants';
 
 const UserComment = ({item}) =>{
     const navigation = useNavigation();
-    console.log("item=", item);
 
     return (
     
-    <View style={styles.container}>
-        <Image source={item.photoUser} style={styles.image}/>
+    <View style={[styles.container, item.userId===userLogin && styles.containerUser]}>
+        <Image source={item.photoUser} style={[styles.image, item.userId===userLogin && styles.imageUser]}/>
         
-        <View style={styles.infoWrap}>
+        <View style={[styles.infoWrap, item.userId===userLogin && styles.infoWrapUser ]}>
             <Text style={styles.commentText}>{item.commentText}</Text>
-            <Text style={styles.commentDate}>{item.date}</Text>
+            <Text style={[styles.commentDate, item.userId===userLogin && styles.commentDateUser]}>{item.date}</Text>
         </View>
   
     </View>
@@ -28,7 +28,10 @@ const styles = StyleSheet.create({
         gap: 16,
         marginBottom: 24,
     },
-       
+    
+    containerUser:{
+        flexDirection: 'row-reverse',
+    },
     image:{
         width: 28,
         borderRadius: 50,
@@ -45,14 +48,18 @@ const styles = StyleSheet.create({
        flex:1,
    },
  
-
-   
+   infoWrapUser:{
+    borderTopLeftRadius: 6,
+    borderTopRightRadius: 0,
+    borderBottomLeftRadius: 6,
+    borderBottomRightRadius: 6,
+},
+  
     commentText:{
         color: '#212121',
         fontFamily: 'RobotoRegular',
         fontSize: 13,
-        marginBottom: 8,
-       
+        marginBottom: 8, 
     },
 
     commentDate:{
@@ -62,7 +69,9 @@ const styles = StyleSheet.create({
         textAlign: 'right',
       
     },
-   
+    commentDateUser:{
+        textAlign: 'left',
+    }
     
 });
 

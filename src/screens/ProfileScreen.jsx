@@ -32,6 +32,7 @@ const ProfileScreen = () => {
                 renderItem={({item}) => <Post item={item} likes="true" fullLocation="false"/>}
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
+                contentContainerStyle={styles.contentContainer}
               />
               }
               
@@ -73,6 +74,10 @@ const styles = StyleSheet.create({
     top: 22,
     right: 16,
   },
+
+  contentContainer: {
+    paddingBottom: 65,
+  }
 });
 
 export default ProfileScreen;

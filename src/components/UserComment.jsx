@@ -4,14 +4,16 @@ import { useNavigation } from '@react-navigation/native';
 
 const UserComment = ({item}) =>{
     const navigation = useNavigation();
+    console.log("item=", item);
+
     return (
     
-    <View>
+    <View style={styles.container}>
         <Image source={item.photoUser} style={styles.image}/>
         
         <View style={styles.infoWrap}>
-            <Text style={styles.commentsText}>{item.commentText}</Text>
-            <Text style={styles.commentsDate}>{item.date}</Text>
+            <Text style={styles.commentText}>{item.commentText}</Text>
+            <Text style={styles.commentDate}>{item.date}</Text>
         </View>
   
     </View>
@@ -20,72 +22,48 @@ const UserComment = ({item}) =>{
 };
 
 const styles = StyleSheet.create({
-    image:{
-        width: '100%',
-        borderRadius: 8,
-    },
-    postTitle:{
-        color: '#212121',
-        fontFamily:'RobotoMedium',
-        fontSize: 16,
-        marginVertical: 8,
-        
-    },
-
-    infoWrap:{
+    container:{
+        flex: 1,
         flexDirection: 'row',
-        marginBottom: 32,
-        justifyContent: 'space-between',
+        gap: 16,
+        marginBottom: 24,
     },
-    wrapper:{
-        flexDirection: 'row',
-    },
-    commentsWrap:{
-        flexDirection: 'row',
-      
-        
-    },
-    commentsText:{
-        color: '#BDBDBD',
-        fontFamily: 'RobotoRegular',
-        fontSize: 16,
-        marginLeft: 6,
-        
-    },
-
-    locationWrap:{
-        flexDirection: 'row',
-   
-    },
-    postLocation:{
-        color: '#212121',
-        textDecorationLine: 'underline',
-        fontFamily: 'RobotoRegular',
-        fontSize: 16,
-        marginLeft: 3,
        
-
+    image:{
+        width: 28,
+        borderRadius: 50,
     },
+    
+    infoWrap:{
+       backgroundColor: 'rgba(0, 0, 0, 0.03)',
+       borderTopLeftRadius: 0,
+       borderTopRightRadius: 6,
+       borderBottomLeftRadius: 6,
+       borderBottomRightRadius: 6,
+       paddingHorizontal: 16,
+       paddingVertical: 16,
+       flex:1,
+   },
+ 
 
-    textProfile:{
+   
+    commentText:{
         color: '#212121',
         fontFamily: 'RobotoRegular',
-        fontSize: 16,
-        marginLeft: 6,
+        fontSize: 13,
+        marginBottom: 8,
+       
     },
 
-    icon:{
+    commentDate:{
         color: '#BDBDBD',
+        fontFamily: 'RobotoRegular',
+        fontSize: 10,
+        textAlign: 'right',
+      
     },
-
-    iconProfile:{
-        color: '#FF6C00',
-    },
-
-    likesWrap:{
-        flexDirection: 'row',
-        marginLeft: 24,
-    },
+   
+    
 });
 
 export default UserComment;

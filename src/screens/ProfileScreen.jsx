@@ -12,6 +12,7 @@ import Post from '../components/Post';
 
 const ProfileScreen = () => {
   const [posts, setPosts] = useState(POSTS);
+  console.log('posts=', posts);
   const isPost=10;
   const navigation = useNavigation();
 

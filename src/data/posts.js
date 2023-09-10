@@ -13,7 +13,7 @@ export const POSTS =[
         "likes": 0,
         "region": "Ivano-Frankivs'k Region",
         "country": "Ukraine",
-        "comments": [{
+        "commentsDate": [{
                 "commentsId":"1",
                 "photoUser":imageUser1,
                 "commentText": "Really love your most recent photo. I’ve been trying to capture the same thing for a few months and would love some tips!",
@@ -42,7 +42,7 @@ export const POSTS =[
         "likes": 0,
         "region": "Black Sea",
         "country": "Ukraine",
-        "comments": [{
+        "commentsDate": [{
             "commentsId":"1",
             "photoUser":imageUser2,
             "commentText": "Really love your most recent photo. I’ve been trying to capture the same thing for a few months and would love some tips!",
@@ -64,7 +64,8 @@ export const POSTS =[
         "comments": 0,
         "likes": 0,
         "region": "Venecia",
-        "country": "Italy"   
+        "country": "Italy",
+        "commentsDate":[]
     }
 
 

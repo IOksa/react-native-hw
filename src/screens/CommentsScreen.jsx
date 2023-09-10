@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, FlatList, StyleSheet } from "react-native";
+import { View, Text, Image, FlatList, StyleSheet } from "react-native";
 import { useRoute } from '@react-navigation/native';
 
 import UserComment from '../components/UserComment';
@@ -8,22 +8,25 @@ const CommentsScreen = () => {
   const { params: {item} } = useRoute();
   
   console.log("item=", item);
+  const commentsInfo=item.commentsDate;
+
+  console.log("commentsInfo=", commentsInfo);
 
   return (
     <View style={styles.container}>
-      {/* <Image source={item.path} style={styles.image}/> */}
-      {/* <View>
-      {comments.length>0 &&           
+      <Image source={item.path} style={styles.image}/>
+      <View>
+      {commentsInfo.length>0 &&           
         <FlatList
-          data={comments}
+          data={commentsInfo}
           renderItem={({item}) => <UserComment item={item}/>}
-          keyExtractor={(item) => item.commentsId}
+          keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}
         />
         }
 
-      </View> */}
-      <Text>CommentsScreen</Text>
+      </View>
+
     </View>
   );
 };

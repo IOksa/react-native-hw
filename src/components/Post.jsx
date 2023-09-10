@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const Post = ({item, likes, fullLocation}) =>{
     const navigation = useNavigation();
+    console.log("item=", item);
     return (
     
     <View>

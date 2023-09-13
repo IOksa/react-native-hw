@@ -1,10 +1,10 @@
-import { View, Image, Text, StyleSheet } from "react-native";
+import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 const Post = ({item, likes, fullLocation}) =>{
     const navigation = useNavigation();
-    console.log("item=", item);
+    
     return (
     
     <View>
@@ -25,10 +25,11 @@ const Post = ({item, likes, fullLocation}) =>{
             </View>
             }
             </View>
-            <View style={styles.locationWrap}>
+            <TouchableOpacity style={styles.locationWrap} onPress={() => {
+          navigation.navigate("MapScreen")}}>
                 <Feather name="map-pin" size={24} color="#BDBDBD" />
                 <Text style={styles.postLocation}>{fullLocation==="true" ? `${item.region}, ${item.country}`: `${item.country}`}</Text>
-            </View> 
+            </TouchableOpacity> 
         </View>
     </View>
    

@@ -1,10 +1,8 @@
 import { View, Image, Text, StyleSheet } from "react-native";
-import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 import {userLogin} from '../data/constants';
 
 const UserComment = ({item}) =>{
-    const navigation = useNavigation();
+
 
     return (
     

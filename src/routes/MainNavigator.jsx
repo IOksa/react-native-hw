@@ -1,11 +1,13 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import {StyleSheet } from "react-native";
+import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import LoginScreen from '../screens/LoginScreen';
 import BottomNavigator from './BottomNavіgator';
 import CommentsScreen from '../screens/CommentsScreen';
-import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import MapScreen from '../screens/MapScreen';
+
 
 const MainStack = createStackNavigator();
 
@@ -32,6 +34,25 @@ const MainNavigator =()=>{
       
             headerTitleAlign: 'center',
             title: 'Коментарі',
+            headerTitleStyle: {
+              fontFamily: 'RobotoMedium',
+              fontSize: 17,
+              color: '#212121',
+              letterSpacing: -0.408,
+              },
+      
+            }}/> 
+            <MainStack.Screen
+          name="MapScreen"
+          component={MapScreen}
+          options={{
+            headerShown: true,
+            headerLeft: () => <Feather name="arrow-left" size={24} color="#21212180" style={styles.iconBack} onPress={() => {
+              navigation.goBack();
+            }}/>,
+      
+            headerTitleAlign: 'center',
+            title: 'Мапа',
             headerTitleStyle: {
               fontFamily: 'RobotoMedium',
               fontSize: 17,

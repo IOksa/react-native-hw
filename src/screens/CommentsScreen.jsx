@@ -26,22 +26,21 @@ const CommentsScreen = () => {
         date: Date(),
       };
    
-    console.log("newComment=", newComment);
+
     const foundedElementPost=POSTS.find(option=>option.id===item.id);
-    console.log("foundedElementPost=", foundedElementPost);
-  
+   
     const updateElementPost={
       ...foundedElementPost,
       comments: foundedElementPost.comments+1,
       commentsDate:foundedElementPost.commentsDate.push({...newComment}),
     }
-    console.log("updateElementPost=", updateElementPost);
+    
     const fromOldPOST=POSTS.find(option=>option.id!==item.id);
     const newPOST={
     ...fromOldPOST,
     updateElementPost,
     }
-    console.log("newPOST=", newPOST);
+
     setUserComment('');
 
 
@@ -57,7 +56,7 @@ const CommentsScreen = () => {
         <FlatList
           data={commentsInfo}
           renderItem={({item}) => <UserComment item={item}/>}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.commentsId}
           showsVerticalScrollIndicator={false}
         />
         }

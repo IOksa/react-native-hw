@@ -11,7 +11,7 @@ export const POSTS =[
         "title": "Ліс",
         "comments": 3,
         "likes": 0,
-        "region": "Ivano-Frankivs'k Region",
+        "region": { "latitude": 47.0392091, "longitude": 10.3328469 },
         "country": "Ukraine",
         "commentsData": [{
                 "commentsId":"1",
@@ -43,7 +43,7 @@ export const POSTS =[
         "title": "Захід на Чорному морі",
         "comments": 2,
         "likes": 0,
-        "region": "Black Sea",
+        "region": { "latitude": 50.388803, "longitude": 30.686109 },
         "country": "Ukraine",
         "commentsDate": [{
             "commentsId":"1",
@@ -68,7 +68,7 @@ export const POSTS =[
         "title": "Старий будиночок у Венеції",
         "comments": 0,
         "likes": 0,
-        "region": "Venecia",
+        "region": { "latitude": 47.0392091, "longitude": 10.3328469 },
         "country": "Italy",
         "commentsDate":[]
     }

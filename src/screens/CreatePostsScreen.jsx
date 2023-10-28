@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from 'react';
 import { ActivityIndicator, View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard,  KeyboardAvoidingView, Platform, ImageBackground, Alert, StyleSheet } from "react-native";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
+import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
@@ -72,6 +73,20 @@ const CreatePostsScreen = () => {
     return <Text>No access to camera</Text>;
   }
 
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+   
+    if (!result.canceled) {
+      setPhoto(result.assets[0].uri);
+    }
+  };
   
 
   const takePhoto = async () => {
@@ -83,8 +98,10 @@ const CreatePostsScreen = () => {
         setIsLoading(true);
         const { uri } = await cameraRef.takePictureAsync();
         await MediaLibrary.createAssetAsync(uri);
-        await getLocation();
         setPhoto(uri);
+        // pickImage();
+        await getLocation();
+     
       }
     } catch (err) {
       console.log(err.message);

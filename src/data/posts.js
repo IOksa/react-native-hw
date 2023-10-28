@@ -13,7 +13,7 @@ export const POSTS =[
         "likes": 0,
         "region": "Ivano-Frankivs'k Region",
         "country": "Ukraine",
-        "commentsDate": [{
+        "commentsData": [{
                 "commentsId":"1",
                 "userId": "22222",
                 "photoUser":imageUser2,

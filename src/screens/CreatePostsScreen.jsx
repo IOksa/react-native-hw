@@ -1,20 +1,127 @@
 import React from "react";
-import { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard,  KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
-
+import { useEffect, useState, useRef } from 'react';
+import { ActivityIndicator, View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard,  KeyboardAvoidingView, Platform, ImageBackground, Alert, StyleSheet } from "react-native";
+import { Camera } from "expo-camera";
+import * as MediaLibrary from "expo-media-library";
+import * as Location from 'expo-location';
+import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+
+import {POSTS} from '../data/posts';
 
 const CreatePostsScreen = () => {
   const [photo, setPhoto] = useState('');
   const [title, setTitle] = useState('');
-  const [location, setLocation] = useState('');
-  const disabled = !(photo && title && location);
+  const [location, setLocation] = useState(null);
+  const [locationTitle, setLocationTitle] = useState('');
+
+  const isDisabled = !(photo && title && locationTitle);
+
+  const [hasPermissionCamera, setHasPermissionCamera] = useState(null);
+  const [cameraRef, setCameraRef] = useState(null);
+  const [type, setType] = useState(Camera.Constants.Type.back);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigation = useNavigation();
+
+  const getLocation = async()=>{
+    console.log("getLocation")
+    try {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        console.log("Permission to access location was denied");
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      const coords = {
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      };
+      console.log("coords=", coords);
+      setLocation(coords);
+    } catch (err) {
+      console.log(err.message);
+      navigation.navigate('Home');
+    } 
+  };
  
 
-  const onPost = ()=>{
-  
+  useEffect(() => {
+    
+    (async () => {
+      console.log("useEffect")
+      try {
+        const { status } = await Camera.requestCameraPermissionsAsync();
+        await MediaLibrary.requestPermissionsAsync();
+        setHasPermissionCamera(status === "granted");
+      } catch (err) {
+        console.log(err.message);
+        navigation.navigate('Home');
+      } 
+    })();
+    getLocation();
+  }, []);
+
+  if (hasPermissionCamera === null) {
+    return <View />;
   }
+  if (hasPermissionCamera === false) {
+    return <Text>No access to camera</Text>;
+  }
+
+  
+
+  const takePhoto = async () => {
+    console.log("takePhoto")
+    try {
+   
+      if (cameraRef) {
+       
+        setIsLoading(true);
+        const { uri } = await cameraRef.takePictureAsync();
+        await MediaLibrary.createAssetAsync(uri);
+        await getLocation();
+        setPhoto(uri);
+      }
+    } catch (err) {
+      console.log(err.message);
+      navigation.navigate('Home');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const addPost = ()=>{
+    const post = {
+      id: Math.ceil(Math.random()*100000+1),
+      path: photo,
+      title,
+      comments: 0,
+      likes: 0,
+      region: location,
+      country: locationTitle, 
+      commentsDate:[],
+    };
+
+    console.log("post=", post);
+    POSTS.push(post);
+    deleteAll();
+    
+    navigation.navigate('PostsScreen', { post });
+  }
+
+  const deletePhoto = () => {
+    setPhoto('');
+  };
+
+  const deleteAll = () => {
+    setPhoto('');
+    setTitle('');
+    setLocationTitle('');
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -23,45 +130,97 @@ const CreatePostsScreen = () => {
           style={styles.container}>
 
         <View>
-          <View style={styles.photoWrap}>
-            <View style={styles.circle}>
-              <FontAwesome name="camera" size={24} color="#BDBDBD" />
+        {photo.length>0 ? (
+            <ImageBackground source={{ uri: photo }} style={styles.photoWrap}>
+                <TouchableOpacity
+                  onPress={deletePhoto}
+                  style={styles.iconDelete}
+                >
+                  <MaterialIcons
+                    name="delete"
+                    size={24}
+                    color={'#BDBDBD'}
+                    
+                  />
+                </TouchableOpacity>
+              </ImageBackground>
+            ) : (
+          <Camera
+            style={styles.camera}
+            type={type}
+            ref={setCameraRef}
+            >
+            <View style={styles.photoWrap}>
+              
+              <TouchableOpacity
+                onPress={takePhoto}
+                disabled={isLoading}
+              >
+                  {isLoading ? (
+                    <ActivityIndicator size="small" color="#FFf" />
+                  ) : (
+                  <View style={styles.circle}>
+                    <FontAwesome name="camera" size={24} color="#BDBDBD" />
+                  </View>
+                   )}
+              </TouchableOpacity>
+
+              <TouchableOpacity
+              style={styles.flip}
+              onPress={() => {
+                setType(
+                  type === Camera.Constants.Type.back
+                    ? Camera.Constants.Type.front
+                    : Camera.Constants.Type.back
+                );
+         
+              }}
+              >
+               
+               <MaterialIcons name="flip-camera-ios" size={24} color="#BDBDBD" />
+             
+              </TouchableOpacity>
+            </View>
+          </Camera>
+          )}
+
+
+            <Text style={styles.text}>{photo ? 'Peдагувати фото' : 'Завантажте фото'}</Text>
+
+            <TextInput
+              name="name"
+              value={title}
+              onChangeText={setTitle}
+              style={styles.input}
+              placeholder="Назва..."
+              placeholderTextColor='#BDBDBD'
+            />
+
+            <View style={styles.locationWrap}>
+              <Feather name="map-pin" size={24} color="#BDBDBD" style={styles.iconLocation}/>
+              <TextInput
+              name="location"
+              value={locationTitle}
+              onChangeText={setLocationTitle}
+              style={[styles.input,styles.inputLocation]}
+              placeholder="Місцевість"
+              placeholderTextColor='#BDBDBD'
+              />
             </View>
 
-          </View>
-
-          <Text style={styles.text}>{photo ? 'Peдагувати фото' : 'Завантажте фото'}</Text>
-
-          <TextInput
-            name="name"
-            value={title}
-            onChangeText={setTitle}
-            style={styles.input}
-            placeholder="Назва..."
-            placeholderTextColor='#BDBDBD'
-          />
-
-          <View style={styles.locationWrap}>
-            <Feather name="map-pin" size={24} color="#BDBDBD" style={styles.iconLocation}/>
-            <TextInput
-            name="location"
-            value={location}
-            onChangeText={setLocation}
-            style={[styles.input,styles.inputLocation]}
-            placeholder="Місцевість"
-            placeholderTextColor='#BDBDBD'
-            />
-          </View>
-
-          <TouchableOpacity style={[styles.butPost, disabled===true && styles.butPostDisabled]} onPress={onPost}>
-            <Text style={[styles.butPostText, disabled===true && styles.butPostDisabled]}>Опублікувати</Text>
-          </TouchableOpacity>
+            <TouchableOpacity 
+            disabled={isDisabled}
+            style={[styles.butPost, isDisabled===true && styles.butPostDisabled]} onPress={addPost}>
+              <Text style={[styles.butPostText, isDisabled===true && styles.butPostDisabled]}>Опублікувати</Text>
+            </TouchableOpacity>
+     
         </View>
 
         <View style={styles.trashWrap}>
           <View style={styles.backgroundTrash}>
-            <Feather name="trash-2" size={24} color="#BDBDBD" />
+            <Feather name="trash-2" size={24} color="#BDBDBD" onPress={deleteAll}/>
           </View>
+        
         </View>
 
 
@@ -78,16 +237,19 @@ const styles = StyleSheet.create({
     paddingVertical: 32,
     justifyContent: "space-between",
   },
+
   
   photoWrap:{
+
     width: '100%',
     height: 240,
     borderRadius: 8,
     borderColor: '#E8E8E8',
     borderWidth: 1,
-    backgroundColor:'#F6F6F6',
+   
     justifyContent: 'center',
     alignItems:'center',
+
   },
 
   circle:{
@@ -145,6 +307,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,    
     alignItems: 'center',
     borderRadius: 100,
+    
 
   },
 
@@ -157,6 +320,7 @@ const styles = StyleSheet.create({
   butPostDisabled:{
     backgroundColor: '#F6F6F6',
     color: '#BDBDBD',
+    
   },
 
   trashWrap:{
@@ -170,6 +334,46 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems:'center',
     justifyContent: 'center',
+  },
+
+  
+
+
+  button: { alignSelf: "center" },
+
+  takePhotoOut: {
+    borderWidth: 2,
+    borderColor: "white",
+    height: 50,
+    width: 50,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 50,
+  },
+
+  takePhotoInner: {
+    borderWidth: 2,
+    borderColor: "white",
+    height: 40,
+    width: 40,
+    backgroundColor: "white",
+    borderRadius: 50,
+  },
+
+  flip: {
+    position: 'absolute',
+    right: 10,
+    bottom: 10,
+    zIndex: 999,
+    // alignSelf: 'flex-end',
+  },
+
+
+  iconDelete:{
+    position: 'absolute',
+    right: 10,
+    bottom: 10,
   }
 });
 

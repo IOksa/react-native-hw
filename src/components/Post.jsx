@@ -3,6 +3,9 @@ import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 const Post = ({item, likes, fullLocation}) =>{
+    console.log("item=", item);
+    console.log("likes=", likes);
+    console.log("fullLocation=", fullLocation);
     const navigation = useNavigation();
     
     return (

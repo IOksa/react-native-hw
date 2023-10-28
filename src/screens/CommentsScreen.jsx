@@ -11,7 +11,7 @@ import imageUser1 from '../assets/images/user1.png';
 
 const CommentsScreen = () => {
   const { params: {item} } = useRoute();
-  const commentsInfo=item.commentsDate;
+  const commentsInfo=item.commentsData;
 
   const [userComment, setUserComment] = useState('');
   const [focus, setFocus] = useState(null);
@@ -32,7 +32,7 @@ const CommentsScreen = () => {
     const updateElementPost={
       ...foundedElementPost,
       comments: foundedElementPost.comments+1,
-      commentsDate:foundedElementPost.commentsDate.push({...newComment}),
+      commentsData:foundedElementPost.commentsData.push({...newComment}),
     }
     
     const fromOldPOST=POSTS.find(option=>option.id!==item.id);

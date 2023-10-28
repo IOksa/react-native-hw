@@ -87,8 +87,8 @@ const ToggleShowPassword = ()=>{
         <Text style={styles.formButtonText}>Зареєструватися</Text>
       </TouchableOpacity>
 
-      <Text style={styles.loginLinkText}>Вже є акаунт?&nbsp;
-        <Text style={[styles.loginLinkText, styles.loginLink]} onPress={() => navigation.navigate("LoginScreen")}>Увійти</Text>
+      <Text style={styles.loginLinkText} onPress={() => navigation.navigate("LoginScreen")}>Вже є акаунт?&nbsp;
+        <Text style={[styles.loginLinkText, styles.loginLink]} >Увійти</Text>
       </Text>
           
     </>

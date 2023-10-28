@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     paddingHorizontal: 16,
-    paddingVertical: 32,
+    paddingTop: 32,
     
   },
   avatarWrap:{

@@ -72,8 +72,8 @@ const LoginForm =()=>{
         <Text style={styles.formButtonText}>Увійти</Text>
       </TouchableOpacity>
 
-      <Text style={styles.loginLinkText}>Немає акаунту?&nbsp;  
-        <Text style={[styles.loginLinkText, styles.loginLink]} onPress={() => navigation.navigate("RegistrationScreen")}>Зареєструватися</Text>
+      <Text style={styles.loginLinkText} onPress={() => navigation.navigate("RegistrationScreen")}>Немає акаунту?&nbsp;  
+        <Text style={[styles.loginLinkText, styles.loginLink]}>Зареєструватися</Text>
       </Text>
     
 

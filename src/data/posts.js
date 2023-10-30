@@ -7,12 +7,12 @@ import imageUser2 from '../assets/images/user2.png';
 export const POSTS =[
     {
         "id": "1",
-        "path": image1,
+        "path": "https://res.cloudinary.com/dk9nurg6u/image/upload/v1697832954/buick_enclave_dbgssn.jpg",
         "title": "Ліс",
         "comments": 3,
         "likes": 0,
-        "region": { "latitude": 47.0392091, "longitude": 10.3328469 },
-        "country": "Ukraine",
+        "coords": { "latitude": 47.0392091, "longitude": 10.3328469 },
+        "locationDescription": "Ivano-Frankivs'k Region, Ukraine",
         "commentsData": [{
                 "commentsId":"1",
                 "userId": "22222",
@@ -39,13 +39,13 @@ export const POSTS =[
     },
     {
         "id": "2",
-        "path": image2,
+        "path": "https://res.cloudinary.com/dk9nurg6u/image/upload/v1697832937/volvo_xc90_qcev2n.jpg",
         "title": "Захід на Чорному морі",
         "comments": 2,
         "likes": 0,
-        "region": { "latitude": 50.388803, "longitude": 30.686109 },
-        "country": "Ukraine",
-        "commentsDate": [{
+        "coords": { "latitude": 50.388803, "longitude": 30.686109 },
+        "locationDescription": "Захід на Чорному морі, Ukraine",
+        "commentsData": [{
             "commentsId":"1",
             "userId": "22222",
             "photoUser":imageUser2,
@@ -64,13 +64,13 @@ export const POSTS =[
     },
     {
         "id": "3",
-        "path": image3,
+        "path": "https://res.cloudinary.com/dk9nurg6u/image/upload/v1697833292/2020-volvo-xc60_100730027_h_p11cag.jpg",
         "title": "Старий будиночок у Венеції",
         "comments": 0,
         "likes": 0,
-        "region": { "latitude": 47.0392091, "longitude": 10.3328469 },
-        "country": "Italy",
-        "commentsDate":[]
+        "coords": { "latitude": 47.0392091, "longitude": 10.3328469 },
+        "locationDescription": "Italy",
+        "commentsData":[]
     }
 
 

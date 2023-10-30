@@ -73,22 +73,6 @@ const CreatePostsScreen = () => {
     return <Text>No access to camera</Text>;
   }
 
-
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-   
-    if (!result.canceled) {
-      setPhoto(result.assets[0].uri);
-    }
-  };
-  
-
   const takePhoto = async () => {
     console.log("takePhoto")
     try {
@@ -99,7 +83,6 @@ const CreatePostsScreen = () => {
         const { uri } = await cameraRef.takePictureAsync();
         await MediaLibrary.createAssetAsync(uri);
         setPhoto(uri);
-        // pickImage();
         await getLocation();
      
       }
@@ -114,13 +97,13 @@ const CreatePostsScreen = () => {
   const addPost = ()=>{
     const post = {
       id: Math.ceil(Math.random()*100000+1),
-      path:{ uri: photo },
+      path:photo,
       title,
       comments: 0,
       likes: 0,
-      region: location,
-      country: locationTitle, 
-      commentsDate:[],
+      coords: location,
+      locationDescription: locationTitle, 
+      commentsData:[],
     };
 
     console.log("post=", post);

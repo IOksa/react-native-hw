@@ -12,6 +12,7 @@ import imageUser1 from '../assets/images/user1.png';
 const CommentsScreen = () => {
   const { params: {item} } = useRoute();
   const commentsInfo=item.commentsData;
+  console.log("commentsInfo=",commentsInfo);
 
   const [userComment, setUserComment] = useState('');
   const [focus, setFocus] = useState(null);

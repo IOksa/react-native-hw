@@ -22,7 +22,7 @@ const PostsScreen = () => {
       {isPost>0 &&           
           <FlatList
             data={posts}
-            renderItem={({item}) => <Post item={item} likes="false" fullLocation="true"/>}
+            renderItem={({item}) => <Post item={item} like="false" fullLocation="true"/>}
             keyExtractor={(item) => item.id}
             showsVerticalScrollIndicator={false}
           />

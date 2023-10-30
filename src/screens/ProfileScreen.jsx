@@ -29,7 +29,7 @@ const ProfileScreen = () => {
               {isPost>0 &&           
               <FlatList
                 data={posts}
-                renderItem={({item}) => <Post item={item} likes="true" fullLocation="false"/>}
+                renderItem={({item}) => <Post item={item} like="true" fullLocation="false"/>}
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.contentContainer}

@@ -4,8 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 
 const Post = ({item, likes, fullLocation}) =>{
     console.log("item=", item);
-    console.log("likes=", likes);
-    console.log("fullLocation=", fullLocation);
     const {path, title, comments, region, country}=item;
     const navigation = useNavigation();
     console.log("region=", region);

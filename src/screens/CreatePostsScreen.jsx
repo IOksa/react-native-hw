@@ -114,7 +114,7 @@ const CreatePostsScreen = () => {
   const addPost = ()=>{
     const post = {
       id: Math.ceil(Math.random()*100000+1),
-      path: photo,
+      path:{ uri: photo },
       title,
       comments: 0,
       likes: 0,

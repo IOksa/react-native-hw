@@ -6,7 +6,8 @@ import UserComment from '../components/UserComment';
 import {POSTS} from '../data/posts';
 import {userLogin} from '../data/constants';
 import imageUser1 from '../assets/images/user1.png';
-
+import addLeadingZero from '../utils/addLeadingZero';
+import {monthUkr} from '../utils/month';
 
 
 const CommentsScreen = () => {
@@ -19,12 +20,14 @@ const CommentsScreen = () => {
 
   const addComment = () =>{
     if(userComment!==''){
+      const currentTime = new Date();
+
       const newComment = {
-        commentsId: Math.random(),
+        commentsId: Math.random()*10000,
         userId: userLogin,
         photoUser: imageUser1,
         commentText: userComment,
-        date: Date(),
+        date: `${addLeadingZero(currentTime.getDate())} ${monthUkr[currentTime.getMonth()]}, ${currentTime.getFullYear()} | ${addLeadingZero(currentTime.getHours())}:${addLeadingZero(currentTime.getMinutes())}`,
       };
    
 

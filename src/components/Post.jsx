@@ -20,8 +20,8 @@ const Post = ({item, like, fullLocation}) =>{
     <View>
         <View style={styles.imageWrap}>
             <Image 
-                source= {{uri:path}} 
-                // source= {path}
+                // source= {{uri:path}} 
+                source= {path}
                 // source={require(path)}
                 style={styles.image}/>
         </View>

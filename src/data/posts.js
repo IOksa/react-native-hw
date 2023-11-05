@@ -7,7 +7,7 @@ import imageUser2 from '../assets/images/user2.png';
 export const POSTS =[
     {
         "id": "1",
-        "path": "https://res.cloudinary.com/dk9nurg6u/image/upload/v1697832954/buick_enclave_dbgssn.jpg",
+        "path": image1,
         "title": "Ліс",
         "comments": 3,
         "likes": 0,
@@ -39,7 +39,7 @@ export const POSTS =[
     },
     {
         "id": "2",
-        "path": "https://res.cloudinary.com/dk9nurg6u/image/upload/v1697832937/volvo_xc90_qcev2n.jpg",
+        "path": image2,
         "title": "Захід на Чорному морі",
         "comments": 2,
         "likes": 0,
@@ -64,7 +64,7 @@ export const POSTS =[
     },
     {
         "id": "3",
-        "path": "https://res.cloudinary.com/dk9nurg6u/image/upload/v1697833292/2020-volvo-xc60_100730027_h_p11cag.jpg",
+        "path": image3,
         "title": "Старий будиночок у Венеції",
         "comments": 0,
         "likes": 0,

@@ -24,13 +24,13 @@ export const MapScreen = () => {
 
       >
         <Marker
-          title="I am here"
+          title="Here"
           coordinate={{
             latitude,
             longitude,
           }}
        
-          description="Hello"
+          
         />
       </MapView>
     </View>

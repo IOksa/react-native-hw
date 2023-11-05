@@ -5,7 +5,7 @@ import { useRoute } from '@react-navigation/native';
 
 
 export const MapScreen = () => {
-  const {params: {coords}} = useRoute();
+  const {params: {coords, locationDescription}} = useRoute();
   const {latitude, longitude}=coords;
 
   return (
@@ -30,7 +30,7 @@ export const MapScreen = () => {
             longitude,
           }}
        
-          
+          description={locationDescription}
         />
       </MapView>
     </View>

@@ -43,7 +43,7 @@ const Post = ({item, like, fullLocation}) =>{
             </View>
             <TouchableOpacity style={styles.locationWrap} onPress={() => {
                 console.log("post coords=", coords);
-                navigation.navigate("MapScreen", {coords})}}>
+                navigation.navigate("MapScreen", {coords, locationDescription})}}>
                 <Feather name="map-pin" size={24} color="#BDBDBD" />
                 <Text style={styles.postLocation}>{fullLocation==="true" ? `${locationDescription}`: `${locDescription}`}</Text>
             </TouchableOpacity> 

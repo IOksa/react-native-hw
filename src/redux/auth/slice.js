@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { registerDB, loginDB, logOut, updateUserProfile } from './operations';
+import { register, loginDB, logOut, updateUserProfile } from './operations';
 
 const initialState = {
   email: '' ,
@@ -11,10 +11,10 @@ const initialState = {
   // isLoading: false,
 };
 
-// const handlePending =(state)=>{
-//   console.log('handlePending state=', state);
-//   //state.isLoading = true;
-// };
+const handlePending =(state)=>{
+  console.log('handlePending state=', state);
+  state.isLoading = true;
+};
 
 const handleFulfilled =(state, action)=>{
   console.log('handleFulfilled action.payload=', action.payload);
@@ -26,10 +26,10 @@ const handleFulfilled =(state, action)=>{
     // state.isLoading = false;
 };
 
-// const handleRejected=(state, action)=>{
-//   state.error=action.payload;
-//   state.isLoading = false;
-// }
+const handleRejected=(state, action)=>{
+  state.error=action.payload;
+  state.isLoading = false;
+}
 // const handleLogOutFulfilled = (state)=>{
 //     state.user = { email: null };
 //    // state.token = null;
@@ -60,16 +60,16 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    .addCase(registerDB.pending, handlePending)
-    .addCase(registerDB.fulfilled, handleFulfilled)
-    .addCase(registerDB.rejected, handleRejected)
-    .addCase(loginDB.pending, handlePending)
-    .addCase(loginDB.fulfilled, handleFulfilled)
-    .addCase(loginDB.rejected, handleRejected)
-    .addCase(logOut.fulfilled, handleLogOutFulfilled)
-    .addCase(updateUserProfile.pending, handleRefreshUserPending)
-    .addCase(updateUserProfile.fulfilled, handleRefreshUserFulfilled)
-    .addCase(updateUserProfile.rejected, handleRefreshUserRejected)
+    // .addCase(register.pending, handlePending)
+    .addCase(register.fulfilled, handleFulfilled)
+    .addCase(register.rejected, handleRejected)
+    // .addCase(loginDB.pending, handlePending)
+    // .addCase(loginDB.fulfilled, handleFulfilled)
+    // .addCase(loginDB.rejected, handleRejected)
+    // .addCase(logOut.fulfilled, handleLogOutFulfilled)
+    // .addCase(updateUserProfile.pending, handleRefreshUserPending)
+    // .addCase(updateUserProfile.fulfilled, handleRefreshUserFulfilled)
+    // .addCase(updateUserProfile.rejected, handleRefreshUserRejected)
   },
 });
 console.log('authSlice', authSlice);

@@ -3,13 +3,13 @@ import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 const Post = ({item, like, fullLocation}) =>{
-    console.log("item=", item);
-    console.log("like=", like);
-    console.log("fullLocation=", fullLocation);
+    // console.log("item=", item);
+    // console.log("like=", like);
+    // console.log("fullLocation=", fullLocation);
     const {path, title, comments, likes, coords, locationDescription}=item;
     const navigation = useNavigation();
-    console.log("path=", path);
-    console.log("coords=", coords);
+    // console.log("path=", path);
+    // console.log("coords=", coords);
     let locDescription = locationDescription;
     if(locationDescription.includes(",")){
         locDescription = locationDescription.split(","); 
@@ -42,7 +42,7 @@ const Post = ({item, like, fullLocation}) =>{
             }
             </View>
             <TouchableOpacity style={styles.locationWrap} onPress={() => {
-                console.log("post coords=", coords);
+                // console.log("post coords=", coords);
                 navigation.navigate("MapScreen", {coords, locationDescription})}}>
                 <Feather name="map-pin" size={24} color="#BDBDBD" />
                 <Text style={styles.postLocation}>{fullLocation==="true" ? `${locationDescription}`: `${locDescription}`}</Text>

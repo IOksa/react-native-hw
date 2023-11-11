@@ -12,7 +12,8 @@ import { useNavigation } from '@react-navigation/native';
 //   selectError,
 //   selectIsLoading
 // } from '../redux/auth/selectors';
-import { registerDB } from '../redux/auth/operations';
+// import { registerDB } from '../redux/auth/operations';
+import { register } from '../redux/auth/operations';
 
 const RegistrationForm =()=>{
     const [userLogin, setUserLogin] = useState('');
@@ -30,7 +31,11 @@ const RegistrationForm =()=>{
     const onLogin = () => {
       if (userLogin && userEmail && userPassword){
         console.log(`Credentials - login: ${userLogin}, email: ${userEmail}, password: ${userPassword}`);
-        dispatch(registerDB({userEmail, userPassword}));
+        dispatch(register({
+          login: userLogin,
+          email: userEmail,
+          password: userPassword
+        }));
         setUserLogin('');
         setUserEmail('');
         setUserPassword('');

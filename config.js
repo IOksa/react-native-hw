@@ -7,8 +7,8 @@ import { getFirestore } from "firebase/firestore";
 // Функція для підключення сховища файлів в проект
 import { getStorage } from "firebase/storage";
 
-import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
-import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
+// import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
+// import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 
 
 //дает Firebase после добавления web app
@@ -24,11 +24,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-// export const auth = getAuth(app);
+export const auth = getAuth(app);
 
-export const auth = initializeAuth(app, {
-    persistence: getReactNativePersistence(ReactNativeAsyncStorage)
-  });
+// export const auth = initializeAuth(app, {
+//     persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+//   });
 
 
 export const db = getFirestore(app);

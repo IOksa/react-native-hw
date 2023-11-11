@@ -1,12 +1,13 @@
 import { Provider } from "react-redux";
 import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from "./src/redux/store";
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import { NavigationContainer } from "@react-navigation/native";
 import {View, StyleSheet} from "react-native";
 import 'react-native-gesture-handler';
 import MainNavigator from './src/routes/MainNavigator';
-import { store, persistor } from "./src/redux/store";
+
 
 
 export default function App() {
@@ -30,8 +31,8 @@ export default function App() {
           
           <StatusBar style="auto" />
         </View>
-      </PersistGate>
-    </Provider>
+       </PersistGate>
+     </Provider>
     
   
   );

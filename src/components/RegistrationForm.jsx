@@ -8,10 +8,11 @@ import {
   Alert,
   StyleSheet} from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import {
-  selectError,
-  selectIsLoading
-} from '../redux/auth/selectors';
+// import {
+//   selectError,
+//   selectIsLoading
+// } from '../redux/auth/selectors';
+import { registerDB } from '../redux/auth/operations';
 
 const RegistrationForm =()=>{
     const [userLogin, setUserLogin] = useState('');
@@ -29,7 +30,7 @@ const RegistrationForm =()=>{
     const onLogin = () => {
       if (userLogin && userEmail && userPassword){
         console.log(`Credentials - login: ${userLogin}, email: ${userEmail}, password: ${userPassword}`);
-        dispatch(registerDB({name:userLogin, email: userEmail, password: userPassword}));
+        dispatch(registerDB({userEmail, userPassword}));
         setUserLogin('');
         setUserEmail('');
         setUserPassword('');

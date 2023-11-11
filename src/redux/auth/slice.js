@@ -2,51 +2,53 @@ import { createSlice } from '@reduxjs/toolkit';
 import { registerDB, loginDB, logOut, updateUserProfile } from './operations';
 
 const initialState = {
-  user: { name: null, email: null },
+  email: '' ,
  //token: null,
-  isLoggedIn: false,
-  isRefreshing: false,
+  // isLoggedIn: false,
+  // isRefreshing: false,
 
   error: null,
-  isLoading: false,
+  // isLoading: false,
 };
 
-const handlePending =(state)=>{
-  state.isLoading = true;
-};
+// const handlePending =(state)=>{
+//   console.log('handlePending state=', state);
+//   //state.isLoading = true;
+// };
 
 const handleFulfilled =(state, action)=>{
-    state.user = action.payload.user;
+  console.log('handleFulfilled action.payload=', action.payload);
+    // state.email = action.payload.user;
     //state.token = action.payload.token;
-    state.isLoggedIn = true;
+    // state.isLoggedIn = true;
 
-    state.error = null;
-    state.isLoading = false;
+    // state.error = null;
+    // state.isLoading = false;
 };
 
-const handleRejected=(state, action)=>{
-  state.error=action.payload;
-  state.isLoading = false;
-}
-const handleLogOutFulfilled = (state)=>{
-    state.user = { name: null, email: null };
-   // state.token = null;
-    state.isLoggedIn = false;
-};
+// const handleRejected=(state, action)=>{
+//   state.error=action.payload;
+//   state.isLoading = false;
+// }
+// const handleLogOutFulfilled = (state)=>{
+//     state.user = { email: null };
+//    // state.token = null;
+//     state.isLoggedIn = false;
+// };
 
-const handleRefreshUserPending=(state)=>{
-    state.isRefreshing = true;
-};
+// const handleRefreshUserPending=(state)=>{
+//     state.isRefreshing = true;
+// };
 
-const handleRefreshUserFulfilled = (state, action)=>{
-    state.user = action.payload;
-    state.isLoggedIn = true;
-    state.isRefreshing = false;
-};
+// const handleRefreshUserFulfilled = (state, action)=>{
+//     state.user = action.payload;
+//     state.isLoggedIn = true;
+//     state.isRefreshing = false;
+// };
 
-const handleRefreshUserRejected = (state)=>{
-    state.isRefreshing = false;
-}
+// const handleRefreshUserRejected = (state)=>{
+//     state.isRefreshing = false;
+// }
 
 const authSlice = createSlice({
   name: 'auth',
@@ -70,6 +72,6 @@ const authSlice = createSlice({
     .addCase(updateUserProfile.rejected, handleRefreshUserRejected)
   },
 });
-
+console.log('authSlice', authSlice);
 export const { clearError } = authSlice.actions;
 export const authReducer = authSlice.reducer;

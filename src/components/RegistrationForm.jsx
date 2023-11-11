@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useDispatch} from 'react-redux';
 import {
   TextInput,
   TouchableOpacity,
@@ -8,6 +8,10 @@ import {
   Alert,
   StyleSheet} from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import {
+  selectError,
+  selectIsLoading
+} from '../redux/auth/selectors';
 
 const RegistrationForm =()=>{
     const [userLogin, setUserLogin] = useState('');
@@ -16,11 +20,16 @@ const RegistrationForm =()=>{
     const [focus, setFocus] = useState(null);
     const [isShowPassword, setIsShowPassword]=useState(true);
 
+    const dispatch = useDispatch();
+    // const isLoading= useSelector(selectIsLoading);//для спиннера на кнопке
+    // const error = useSelector(selectError);
+
     const navigation = useNavigation();
 
     const onLogin = () => {
       if (userLogin && userEmail && userPassword){
         console.log(`Credentials - login: ${userLogin}, email: ${userEmail}, password: ${userPassword}`);
+        dispatch(registerDB({name:userLogin, email: userEmail, password: userPassword}));
         setUserLogin('');
         setUserEmail('');
         setUserPassword('');

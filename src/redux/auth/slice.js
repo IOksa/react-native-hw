@@ -1,14 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, loginDB, logOut, updateUserProfile } from './operations';
+import { register, logIn, logOut, updateUserProfile } from './operations';
 
 const initialState = {
-  email: '' ,
+  name:"",
+  email:"" ,
+  avatar: "",
  //token: null,
-  // isLoggedIn: false,
+  isLoggedIn: false,
   // isRefreshing: false,
 
   error: null,
-  // isLoading: false,
+  isLoading: false,
 };
 
 const handlePending =(state)=>{
@@ -18,23 +20,31 @@ const handlePending =(state)=>{
 
 const handleFulfilled =(state, action)=>{
   console.log('handleFulfilled action.payload=', action.payload);
-    // state.email = action.payload.user;
-    //state.token = action.payload.token;
-    // state.isLoggedIn = true;
+  const {displayName, email, photoURL}=action.payload;
+  state.name=displayName;
+  state.email = email;
+  state.avatar=photoURL;
+  //state.token = action.payload.token;
+  state.isLoggedIn = true;
 
-    // state.error = null;
-    // state.isLoading = false;
+  state.error = null;
+  state.isLoading = false;
+  console.log("fullfild, state", state);
 };
 
 const handleRejected=(state, action)=>{
   state.error=action.payload;
   state.isLoading = false;
 }
-// const handleLogOutFulfilled = (state)=>{
-//     state.user = { email: null };
-//    // state.token = null;
-//     state.isLoggedIn = false;
-// };
+const handleLogOutFulfilled = (state)=>{
+    state.name = "";
+    state.email="";
+    state.avatar="";
+
+   // state.token = null;
+    state.isLoggedIn = false;
+    console.log("handleLogOutFulfilled state=", state)
+};
 
 // const handleRefreshUserPending=(state)=>{
 //     state.isRefreshing = true;
@@ -63,10 +73,10 @@ const authSlice = createSlice({
     // .addCase(register.pending, handlePending)
     .addCase(register.fulfilled, handleFulfilled)
     .addCase(register.rejected, handleRejected)
-    // .addCase(loginDB.pending, handlePending)
-    // .addCase(loginDB.fulfilled, handleFulfilled)
-    // .addCase(loginDB.rejected, handleRejected)
-    // .addCase(logOut.fulfilled, handleLogOutFulfilled)
+    // .addCase(logIn.pending, handlePending)
+    .addCase(logIn.fulfilled, handleFulfilled)
+    .addCase(logIn.rejected, handleRejected)
+    .addCase(logOut.fulfilled, handleLogOutFulfilled)
     // .addCase(updateUserProfile.pending, handleRefreshUserPending)
     // .addCase(updateUserProfile.fulfilled, handleRefreshUserFulfilled)
     // .addCase(updateUserProfile.rejected, handleRefreshUserRejected)

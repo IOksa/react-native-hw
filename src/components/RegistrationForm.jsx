@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 //   selectError,
 //   selectIsLoading
 // } from '../redux/auth/selectors';
-// import { registerDB } from '../redux/auth/operations';
+
 import { register } from '../redux/auth/operations';
 
 const RegistrationForm =()=>{

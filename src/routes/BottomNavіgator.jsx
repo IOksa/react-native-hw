@@ -4,14 +4,22 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
+import { useDispatch} from 'react-redux';
 import PostsScreen from '../screens/PostsScreen';
 import CreatePostsScreen from '../screens/CreatePostsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import { logOut } from '../redux/auth/operations';
 
 const Tabs = createBottomTabNavigator();
 
 const BottomNavigator = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const onLogOut=()=>{
+    dispatch(logOut());
+    navigation.navigate("LoginScreen");
+  
+  }
 
   return (
     <Tabs.Navigator screenOptions={{
@@ -35,7 +43,7 @@ const BottomNavigator = () => {
        name="PostsScreen"
        component={PostsScreen}
        options={ {
-        headerRight: () => <Feather name="log-out" size={24} color="#BDBDBD" style={styles.iconLogout} onPress={() => navigation.navigate("LoginScreen")}/>,
+        headerRight: () => <Feather name="log-out" size={24} color="#BDBDBD" style={styles.iconLogout} onPress={onLogOut}/>,
         headerTitleAlign: 'center',
         title: 'Публікації',
         headerTitleStyle: {

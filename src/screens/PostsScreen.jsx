@@ -1,22 +1,39 @@
 import React , { useState } from "react";
 import { View, Image, Text, SafeAreaView, FlatList, StyleSheet } from "react-native";
+import { useSelector } from 'react-redux';
 import AvatarImage from '../assets/images/User.png';
 import {postQuantity} from '../data/constants';
 import {POSTS} from '../data/posts';
 import Post from '../components/Post';
+import {
+  selectUserName,
+  selectUserEmail,
+  selectUserAvatar,
+  selectIsLoggedIn,
+ 
+  selectError,
+  selectIsLoading
+} from '../redux/auth/selectors';
 
 
 const PostsScreen = () => {
   const [posts, setPosts] = useState(POSTS);
   const isPost=10;
 
+  const userName = useSelector(selectUserName);
+  const userEmail = useSelector(selectUserEmail);
+  const userAvatar = useSelector(selectUserAvatar);
+  console.log("userName=", userName);
+  console.log("userEmail=", userEmail);
+  console.log("userAvatar=", userAvatar);
+  
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.avatarWrap}>
-        <Image source={AvatarImage} style={styles.avatarImage} />
+        <Image source={userAvatar} style={styles.avatarImage} />
         <View style={styles.avatarTextWrap}>
-          <Text style={styles.avatarName}>Natali Romanova</Text>
-          <Text style={styles.avatarEmail}>email@example.com</Text>
+          <Text style={styles.avatarName}>{userName}</Text>
+          <Text style={styles.avatarEmail}>{userEmail}</Text>
         </View>
       </View>
       {isPost>0 &&           
@@ -53,6 +70,9 @@ const styles = StyleSheet.create({
   avatarImage:{
     width: 60,
     height: 60,
+    backgroundColor: '#F6F6F6',
+    borderRadius: 16,
+    objectFit: "cover",
 
   },
   avatarTextWrap: {

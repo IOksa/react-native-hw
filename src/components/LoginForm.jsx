@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
 import {
   TextInput,
   TouchableOpacity,
@@ -7,6 +8,8 @@ import {
   Alert,
   StyleSheet} from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { logIn } from '../redux/auth/operations';
+
 
 const LoginForm =()=>{
     
@@ -14,13 +17,14 @@ const LoginForm =()=>{
     const [userPassword, setUserPassword] = useState('');
     const [focus, setFocus] = useState(null);
     const [isShowPassword, setIsShowPassword]=useState(true);
-    
+    const dispatch = useDispatch();
     const navigation = useNavigation();
 
     const onLogin = () => {
       if(userEmail && userPassword){
         // Alert.alert("Credentials", `${userEmail} ${userPassword}`);
         console.log(`Credentials - email: ${userEmail}, password: ${userPassword}`);
+        dispatch(logIn({userEmail, userPassword }));
         setUserEmail('');
         setUserPassword('');
         navigation.navigate("Home",{screen: 'PostsScreen'});

@@ -1,6 +1,7 @@
 import React , { useState } from "react";
 import { SafeAreaView, FlatList, View, ImageBackground, Text, StyleSheet } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 import BgImage from '../assets/images/PhotoBG.jpg';
 import CommonTitle from '../components/CommonTitle';
 import UserAvatar from "../components/UserAvatar";
@@ -8,13 +9,16 @@ import { Feather } from '@expo/vector-icons';
 import {postQuantity} from '../data/constants'
 import {POSTS} from '../data/posts';
 import Post from '../components/Post';
-
+import {selectUserName} from '../redux/auth/selectors';
 
 const ProfileScreen = () => {
   const [posts, setPosts] = useState(POSTS);
-  console.log('posts=', posts);
+  // console.log('posts=', posts);
   const isPost=10;
   const navigation = useNavigation();
+
+  const userName = useSelector(selectUserName);
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -25,7 +29,7 @@ const ProfileScreen = () => {
              
               <UserAvatar/>
               <Feather name="log-out" size={24} color="#BDBDBD" style={styles.iconLogout} onPress={() => navigation.navigate("LoginScreen")}/>
-              <CommonTitle text='Natali Romanova'/>
+              <CommonTitle text={userName}/>
               {isPost>0 &&           
               <FlatList
                 data={posts}

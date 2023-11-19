@@ -29,7 +29,7 @@ const CreatePostsScreen = () => {
   const navigation = useNavigation();
 
   const getLocation = async()=>{
-    console.log("getLocation")
+    // console.log("getLocation")
     try {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
@@ -41,7 +41,7 @@ const CreatePostsScreen = () => {
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
       };
-      console.log("coords=", coords);
+      // console.log("coords=", coords);
       setLocation(coords);
     } catch (err) {
       console.log(err.message);
@@ -53,7 +53,7 @@ const CreatePostsScreen = () => {
   useEffect(() => {
     
     (async () => {
-      console.log("useEffect")
+      // console.log("useEffect")
       try {
         const { status } = await Camera.requestCameraPermissionsAsync();
         await MediaLibrary.requestPermissionsAsync();
@@ -74,7 +74,7 @@ const CreatePostsScreen = () => {
   }
 
   const takePhoto = async () => {
-    console.log("takePhoto")
+    // console.log("takePhoto")
     try {
    
       if (cameraRef) {

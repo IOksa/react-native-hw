@@ -104,3 +104,6 @@ const writeDataToFirestore = async (login, email, password, photoUser) => {
             throw e;
         }
   };
+
+
+  //test123 - password
